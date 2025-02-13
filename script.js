@@ -44,7 +44,13 @@ function gestionInventario(inventario, opcion, producto) {
   }
 }
 
-//gestionInventario(inventario, "añadir", { nombre: 'Monitor', cantidad: 15, precio: 150 })
+// gestionInventario(inventario, "añadir", { nombre: 'Monitor', cantidad: 15, precio: 150 });
+
+// gestionarInventario(inventario, 'eliminar', { nombre: 'Teclado' });
+
+// gestionarInventario(inventario, 'filtrarPrecio', { precio: 100 });
+
+// gestionarInventario(inventario, 'ordenarCantidad');
 
 //2️⃣ Análisis de Notas de Estudiantes
 
@@ -53,6 +59,23 @@ const estudiantes = [
   { nombre: "Ana", nota: 5 },
   { nombre: "Carlos", nota: 7 },
 ];
+
+const filtrarAlumnosNota = estudiantes.filter(alumno => alumno.nota >= 6);
+console.log("Loa alumnos que aprobaron con mas de un 6", filtrarAlumnosNota);
+let sum = 0;
+estudiantes.forEach(estudiante => {
+    sum += estudiante.nota;
+});
+let media = sum / estudiantes.length;
+console.log("La nota media de toda la clase", media); //Math.round(media)
+
+const ordenarAlumnosNota = estudiantes.sort((a,b) => b.nota - a.nota);
+
+console.log("Los estudiantes de mayor a menor calificación",ordenarAlumnosNota);
+
+
+
+
 
 //3️⃣ Historial de Transacciones Bancarias
 
