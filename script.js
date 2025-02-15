@@ -53,6 +53,10 @@ const libros = [
     { titulo: 'JavaScript Básico', autor: 'Carlos López', año: 2008 }
   ];
 
+  console.log("Estos son los libros publicados después de 2010: ",libros.filter(libro => libro.año > 2010));
+  console.log("El primer libro del autor Carlos López: ", libros.find(libro => libro.autor === "Carlos López"));
+  console.log("Estos son los libros ordenados según su año de publicación: ", libros.sort((a, b) => a.año - b.año));
+
 //🔟 Gestión de Inscripciones a un Evento
 
 const participantes = ['Juan', 'Ana', 'Pedro', 'Luis'];
