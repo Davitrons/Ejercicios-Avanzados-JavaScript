@@ -125,6 +125,32 @@ const alumnos = [
   { nombre: 'Ana', edad: 17 }
 ];
 
+function gestionAlumnos(array, opcion, num, ed) {
+  switch (opcion) {
+    case "añadir":
+      console.log(`Se ha añadido al alumno ${num} de ${ed} años:`);
+      array.push({ nombre: num, edad: ed });
+      console.log(array);
+      break;
+
+    case "actualizar":
+      // if (Object.values(array).find(al => al.nombre === num)) {
+      //   const copia = [...array];
+      //   let al = copia.find(alumno => alumno.nombre === num);
+      //   al.nombre = Nuevonum;
+      //   console.log(`Se ha actualizado al alumno ${num} con los siguientes datos:`, copia.find(al => al.nombre === Nuevonum))
+      // }else {
+      //   console.log("No se encuentra entre los alumnos");
+      // }
+      return array.map(alumno => alumno.nombre === num ? { ...alumno, ...{edad:25} } : alumno);
+      break;
+
+    default:
+      console.log("Estos son los alumnos que tienen más de 18 años:", array.filter(al => al.edad > 18));
+      break;
+  }
+}
+
 //1️⃣3️⃣ Análisis de Palabras en un Texto
 
 const texto = 'El sol brilla sobre el cielo azul y brillante';
