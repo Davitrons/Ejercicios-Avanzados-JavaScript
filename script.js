@@ -150,11 +150,35 @@ function gestionAlumnos(array, opcion, num, ed) {
       break;
   }
 }
-
+console.log("");
 //1️⃣3️⃣ Análisis de Palabras en un Texto
 
 const texto = 'El sol brilla sobre el cielo azul y brillante';
 
+const palabras = [];
+let palabra = '';
+
+for (let i = 0; i < texto.length; i++) {
+    if (texto[i] !== ' ') {
+        palabra += texto[i]; // Agrega el carácter a la palabra actual
+    } else {
+        if (palabra) { // Si hay una palabra acumulada, la agregamos al array
+            palabras.push(palabra);
+            palabra = ''; // Reiniciamos la palabra
+        }
+    }
+}
+
+// Agregamos la última palabra si existe
+if (palabra) {
+    palabras.push(palabra);
+}
+
+console.log("Este es el texto comvirtiendo cada palabra en un elemento de un array ",palabras);
+
+console.log("Estas son las palabras que tienen mas de 5 letras", palabras.filter(p => p.length >= 5));
+
+console.log("Estas son las palabras ordenadas de forma descendiente por longitud", palabras.sort((a,b) => b.length - a.length));
 //1️⃣4️⃣ Simulación de una Cola de Atención
 
 const cola = ['Juan', 'Ana', 'Carlos'];
