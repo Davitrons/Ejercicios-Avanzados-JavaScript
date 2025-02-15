@@ -142,7 +142,7 @@ function gestionAlumnos(array, opcion, num, ed) {
       // }else {
       //   console.log("No se encuentra entre los alumnos");
       // }
-      return array.map(alumno => alumno.nombre === num ? { ...alumno, ...{edad:25} } : alumno);
+      return array.map(alumno => alumno.nombre === num ? { ...alumno, ...{ edad: 25 } } : alumno);
       break;
 
     default:
@@ -159,29 +159,50 @@ const palabras = [];
 let palabra = '';
 
 for (let i = 0; i < texto.length; i++) {
-    if (texto[i] !== ' ') {
-        palabra += texto[i]; // Agrega el carácter a la palabra actual
-    } else {
-        if (palabra) { // Si hay una palabra acumulada, la agregamos al array
-            palabras.push(palabra);
-            palabra = ''; // Reiniciamos la palabra
-        }
+  if (texto[i] !== ' ') {
+    palabra += texto[i]; // Agrega el carácter a la palabra actual
+  } else {
+    if (palabra) { // Si hay una palabra acumulada, la agregamos al array
+      palabras.push(palabra);
+      palabra = ''; // Reiniciamos la palabra
     }
+  }
 }
 
 // Agregamos la última palabra si existe
 if (palabra) {
-    palabras.push(palabra);
+  palabras.push(palabra);
 }
 
-console.log("Este es el texto comvirtiendo cada palabra en un elemento de un array ",palabras);
+console.log("Este es el texto comvirtiendo cada palabra en un elemento de un array ", palabras);
 
 console.log("Estas son las palabras que tienen mas de 5 letras", palabras.filter(p => p.length >= 5));
 
-console.log("Estas son las palabras ordenadas de forma descendiente por longitud", palabras.sort((a,b) => b.length - a.length));
+console.log("Estas son las palabras ordenadas de forma descendiente por longitud", palabras.sort((a, b) => b.length - a.length));
+console.log("");
 //1️⃣4️⃣ Simulación de una Cola de Atención
 
 const cola = ['Juan', 'Ana', 'Carlos'];
+
+function gestionarCola(array, opcion, texto) {
+  switch (opcion) {
+    case "añadir":
+      if (texto != "") {
+        console.log(`Se ha añadido ${texto} a la cola`); array.push(texto)
+      }
+      break;
+    case "atender":
+      console.log(`Se ha atendido a ${array[0]}, ¡Vuelva pronto!`); array.shift(texto)
+      break;
+
+    case "siguiente":
+      console.log("El siguiente cliente en ser atendido es:", array[0]);
+      break;
+    default:
+      console.log("Estos son los clientes que quedan en la cola", array.length);
+      break;
+  }
+}
 
 //1️⃣5️⃣ Gestión de Inventario de Productos (Avanzado con Spread)
 
