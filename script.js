@@ -89,12 +89,16 @@ function gestionarParticipantes(array, opcion, texto) {
       break;
 
     default:
-      let todos = array.join(",");
+      let todos = array.join(", ");
       console.log(todos);
       break;
   }
 }
-
+//gestionarParticipantes(participantes, "añadir", "Gloria")
+//gestionarParticipantes(participantes, "eliminar", "Gloria")
+//gestionarParticipantes(participantes, "filtrar", "a")
+//gestionarParticipantes(participantes)
+console.log("");
 //1️⃣1️⃣ Estadísticas de Redes Sociales
 
 const publicaciones = [
@@ -103,6 +107,17 @@ const publicaciones = [
   { likes: 120, comentarios: 20 }
 ];
 
+//i es el acummulador / pub es el array de objetos / el 0 es el valor inicial del acumulador
+const totalLikes = publicaciones.reduce((i, pub) => i + pub.likes, 0);
+console.log("Total de likes:", totalLikes);
+
+const publicacionesFiltradas = publicaciones.filter(pub => pub.likes > 100);
+console.log("Publicaciones con más de 100 likes:", publicacionesFiltradas);
+
+// Ordenar publicaciones de mayor a menor popularidad (por likes)
+const publicacionesOrdenadas = publicacionesFiltradas.sort((a, b) => b.likes - a.likes);
+console.log("Publicaciones ordenadas por popularidad:", publicacionesOrdenadas);
+console.log("");
 //1️⃣2️⃣ Sistema de Gestión de Alumnos (Operador Spread + Objetos)
 
 const alumnos = [
