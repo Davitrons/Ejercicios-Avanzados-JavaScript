@@ -367,3 +367,20 @@ const inventario2 = [
   { nombre: "Ratón", cantidad: 15, precio: 10 },
   { nombre: "Monitor", cantidad: 5, precio: 200 },
 ];
+
+// 1. Añadir un nuevo producto sin modificar el array original
+const producto = { nombre: 'Auriculares', cantidad: 25, precio: 50 };
+const nuevoInventario = [...inventario1, producto];
+
+console.log('Nuevo Inventario:', nuevoInventario);
+
+// 2. Actualizar el precio de un producto específico (por ejemplo, "Teclado")
+const inventarioActualizado = nuevoInventario.map(producto =>
+  producto.nombre === 'Teclado' ? { ...producto, precio: 35 } : producto
+);
+
+console.log('Inventario con precio actualizado:', inventarioActualizado);
+
+// 3. Eliminar productos con stock igual a 0
+const inventarioConStock = inventarioActualizado.filter(producto => producto.cantidad > 0);
+console.log('Inventario sin productos con stock 0:', inventarioConStock);
