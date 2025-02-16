@@ -214,6 +214,41 @@ const libros = [
 
 const participantes = ["Juan", "Ana", "Pedro", "Luis"];
 
+function gestionarParticipantes(array, opcion, texto) {
+  switch (opcion) {
+    case "añadir":
+      if (texto != "") {
+        console.log(`Se ha añadido ${texto} a los participantes`); array.push(texto)
+      }
+      break;
+    case "eliminar":
+      if (texto != "" && array.includes(texto)) {
+        participantes = array.filter(participante => participante !== texto)
+        console.log(`Se ha eliminado al participante ${texto}: ${participantes}`);
+      } else {
+        console.log("No se encuentra entre los participantes");
+      }
+      // if (texto != "") {
+      //  let el = array.find(participante => participante === texto)
+      //  console.log(el);
+      // }
+      break;
+    case "filtrar":
+      let filtro = array.filter(participante => participante.includes(texto))
+      console.log(`Participantes que contienen la letra ${texto}`, filtro);
+      break;
+
+    default:
+      let todos = array.join(", ");
+      console.log(todos);
+      break;
+  }
+}
+//gestionarParticipantes(participantes, "añadir", "Gloria")
+//gestionarParticipantes(participantes, "eliminar", "Gloria")
+//gestionarParticipantes(participantes, "filtrar", "a")
+//gestionarParticipantes(participantes)
+console.log("");
 //1️⃣1️⃣ Estadísticas de Redes Sociales
 
 const publicaciones = [
@@ -222,6 +257,17 @@ const publicaciones = [
   { likes: 120, comentarios: 20 },
 ];
 
+//i es el acummulador / pub es el array de objetos / el 0 es el valor inicial del acumulador
+const totalLikes = publicaciones.reduce((i, pub) => i + pub.likes, 0);
+console.log("Total de likes:", totalLikes);
+
+const publicacionesFiltradas = publicaciones.filter(pub => pub.likes > 100);
+console.log("Publicaciones con más de 100 likes:", publicacionesFiltradas);
+
+// Ordenar publicaciones de mayor a menor popularidad (por likes)
+const publicacionesOrdenadas = publicacionesFiltradas.sort((a, b) => b.likes - a.likes);
+console.log("Publicaciones ordenadas por popularidad:", publicacionesOrdenadas);
+console.log("");
 //1️⃣2️⃣ Sistema de Gestión de Alumnos (Operador Spread + Objetos)
 
 const alumnos = [
@@ -229,13 +275,84 @@ const alumnos = [
   { nombre: "Ana", edad: 17 },
 ];
 
+function gestionAlumnos(array, opcion, num, ed) {
+  switch (opcion) {
+    case "añadir":
+      console.log(`Se ha añadido al alumno ${num} de ${ed} años:`);
+      array.push({ nombre: num, edad: ed });
+      console.log(array);
+      break;
+
+    case "actualizar":
+      // if (Object.values(array).find(al => al.nombre === num)) {
+      //   const copia = [...array];
+      //   let al = copia.find(alumno => alumno.nombre === num);
+      //   al.nombre = Nuevonum;
+      //   console.log(`Se ha actualizado al alumno ${num} con los siguientes datos:`, copia.find(al => al.nombre === Nuevonum))
+      // }else {
+      //   console.log("No se encuentra entre los alumnos");
+      // }
+      return array.map(alumno => alumno.nombre === num ? { ...alumno, ...{ edad: 25 } } : alumno);
+      break;
+
+    default:
+      console.log("Estos son los alumnos que tienen más de 18 años:", array.filter(al => al.edad > 18));
+      break;
+  }
+}
+console.log("");
 //1️⃣3️⃣ Análisis de Palabras en un Texto
 
 const texto = "El sol brilla sobre el cielo azul y brillante";
 
+const palabras = [];
+let palabra = '';
+
+for (let i = 0; i < texto.length; i++) {
+  if (texto[i] !== ' ') {
+    palabra += texto[i]; // Agrega el carácter a la palabra actual
+  } else {
+    if (palabra) { // Si hay una palabra acumulada, la agregamos al array
+      palabras.push(palabra);
+      palabra = ''; // Reiniciamos la palabra
+    }
+  }
+}
+
+// Agregamos la última palabra si existe
+if (palabra) {
+  palabras.push(palabra);
+}
+
+console.log("Este es el texto comvirtiendo cada palabra en un elemento de un array ", palabras);
+
+console.log("Estas son las palabras que tienen mas de 5 letras", palabras.filter(p => p.length >= 5));
+
+console.log("Estas son las palabras ordenadas de forma descendiente por longitud", palabras.sort((a, b) => b.length - a.length));
+console.log("");
 //1️⃣4️⃣ Simulación de una Cola de Atención
 
 const cola = ["Juan", "Ana", "Carlos"];
+
+function gestionarCola(array, opcion, texto) {
+  switch (opcion) {
+    case "añadir":
+      if (texto != "") {
+        console.log(`Se ha añadido ${texto} a la cola`); array.push(texto)
+      }
+      break;
+    case "atender":
+      console.log(`Se ha atendido a ${array[0]}, ¡Vuelva pronto!`); array.shift(texto)
+      break;
+
+    case "siguiente":
+      console.log("El siguiente cliente en ser atendido es:", array[0]);
+      break;
+    default:
+      console.log("Estos son los clientes que quedan en la cola", array.length);
+      break;
+  }
+}
 
 //1️⃣5️⃣ Gestión de Inventario de Productos (Avanzado con Spread)
 
